@@ -1,5 +1,8 @@
 # Robot-Measurement Project
 
+## Folders
+
+
 ## Dependencies
 ```bash
 git clone https://github.com/ciccio42/UR5e-2f-85.git
@@ -95,6 +98,7 @@ docker image prune -f
 
 # ToDo
 * [] Estimate TCP-Workload when Antenna is conncted
+* [] Set DHCP (ubuntu site)
 * [] Communication script with VM
 * [] Compute Inverse Kinematics
 * [] Control script package
