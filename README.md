@@ -1,5 +1,11 @@
 # Robot-Measurement Project
 
+## Project Elements
+1. VNA
+2. PC-Windows XP (192.168.1.113)
+3. **Central PC Ubuntu** (192.168.1.101). It runs the dockers for robot control. It acts as local DHCP.
+
+
 ## Folders
 
 
@@ -98,7 +104,7 @@ docker image prune -f
 
 # ToDo
 * [] Estimate TCP-Workload when Antenna is conncted
-* [] Set DHCP (ubuntu site)
+* [X] Set DHCP (ubuntu site)
 * [] Communication script with VM
 * [] Compute Inverse Kinematics
 * [] Control script package
