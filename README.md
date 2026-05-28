@@ -68,7 +68,7 @@ docker run -it --rm \
     -e DISPLAY=$DISPLAY \
     --ip 192.168.56.102 \
     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-    -v /home/ciccio/project_antenna/UR5e-2f-85/Antenna-Characterization-Robot-Arm/robot_calibration:/robot_calibration \
+    -v /home/ciccio/project_antenna/Antenna-Characterization-Robot-Arm/robot_calibration:/robot_calibration \
     -v /home/ciccio/project_antenna/Antenna-Characterization-Robot-Arm/src:/home/ros2_ws/src \
     ur_ros2:latest
 ```
@@ -83,7 +83,8 @@ ros2 launch ur_calibration calibration_correction.launch.py \
 ros2 launch ur_robot_driver ur_control.launch.py \
   ur_type:=ur5e \
   robot_ip:=192.168.56.101 \
-  kinematics_params_file:=/robot_calibration/sim_calibration.yaml
+  kinematics_params_file:=/robot_calibration/sim_calibration.yaml \
+  description_launchfile:="/home/ros2_ws/src/ur5e_dual_horn_description/launch/dual_horn_description.launch.py"
 
 # Run moveit-controller
 ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=ur5e launch_rviz:=false use_fake_hardware:=true

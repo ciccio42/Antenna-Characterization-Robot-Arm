@@ -24,8 +24,10 @@ endif()
 
 ## Install launch and URDF/XACRO files so `ros2 launch` can find them
 install(DIRECTORY
+  config
   launch
   meshes
+  ur_programs
   rviz
   urdf
   DESTINATION share/${PROJECT_NAME}

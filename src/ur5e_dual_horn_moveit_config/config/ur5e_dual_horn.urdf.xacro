@@ -1,14 +1,49 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur5e_dual_horn">
-    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+    <xacro:arg name="name" default="ur" />
+    <xacro:arg name="ur_type" default="ur5e" />
+    <xacro:arg name="tf_prefix" default="" />
+    <xacro:arg name="joint_limit_params" default="$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml" />
+    <xacro:arg name="kinematics_params" default="$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml" />
+    <xacro:arg name="physical_params" default="$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml" />
+    <xacro:arg name="visual_params" default="$(find ur_description)/config/$(arg ur_type)/visual_parameters.yaml" />
+    <xacro:arg name="use_fake_hardware" default="true" />
+    <xacro:arg name="com_port" default="/dev/ttyUSB0" />
+    <xacro:arg name="parent" default="world" />
+    <xacro:arg name="mount_xyz" default="0.0 0.0 0.037" />
+    <xacro:arg name="mount_rpy" default="0.0 -3.14159 1.5708" />
+    <xacro:arg name="mesh_file" default="package://ur5e_dual_horn_description/meshes/dual_horn.stl" />
+    <xacro:arg name="initial_positions_file" default="$(find ur5e_dual_horn_description)/config/initial_positions.yaml" />
+    <xacro:arg name="use_ros2_control" default="true" />
 
-    <!-- Import ur5e_dual_horn urdf file -->
-    <xacro:include filename="$(find ur5e_dual_horn_description)/urdf/ur5e_dual_horn.xacro" />
+    <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro" />
+    <xacro:include filename="$(find ur5e_dual_horn_description)/urdf/dual_horn.urdf.xacro" />
+    <xacro:include filename="$(find ur5e_dual_horn_description)/urdf/ur5e_dual_horn_ros2_control.xacro" />
 
-    <!-- Import control_xacro -->
-    <xacro:include filename="ur5e_dual_horn.ros2_control.xacro" />
+    <link name="world" />
 
+    <xacro:ur_robot
+        name="$(arg name)"
+        tf_prefix="$(arg tf_prefix)"
+        parent="$(arg parent)"
+        joint_limits_parameters_file="$(arg joint_limit_params)"
+        kinematics_parameters_file="$(arg kinematics_params)"
+        physical_parameters_file="$(arg physical_params)"
+        visual_parameters_file="$(arg visual_params)">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:ur_robot>
 
-    <xacro:ur5e_dual_horn_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    <xacro:dual_horn
+        parent_link="$(arg tf_prefix)tool0"
+        prefix="$(arg tf_prefix)"
+        mesh_file="$(arg mesh_file)"
+        mount_xyz="$(arg mount_xyz)"
+        mount_rpy="$(arg mount_rpy)" />
+
+    <xacro:if value="$(arg use_ros2_control)">
+        <xacro:ur5e_dual_horn_ros2_control
+            name="FakeSystem"
+            initial_positions_file="$(arg initial_positions_file)" />
+    </xacro:if>
 
 </robot>
