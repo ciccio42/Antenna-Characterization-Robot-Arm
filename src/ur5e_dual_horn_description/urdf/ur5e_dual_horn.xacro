@@ -10,8 +10,8 @@
 	<xacro:arg name="use_fake_hardware" default="true" />
 	<xacro:arg name="com_port" default="/dev/ttyUSB0" />
 	<xacro:arg name="parent" default="world" />
-	<xacro:arg name="mount_xyz" default="0 0 0.037" />
-	<xacro:arg name="mount_rpy" default="0 0 0.0" />
+	<xacro:arg name="mount_xyz" default="0.0 0.0 0.037" />
+	<xacro:arg name="mount_rpy" default="0.0 -3.14159 1.5708" />
 	<xacro:arg name="mesh_file" default="package://ur5e_dual_horn_description/meshes/dual_horn.stl" />
 
 	<xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro" />

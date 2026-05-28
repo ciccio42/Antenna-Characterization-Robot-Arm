@@ -109,4 +109,5 @@ docker image prune -f
 * [] Communication script with VM
 * [] Compute Inverse Kinematics
 * [] Control script package
-* [] Create moveit-package with Antenna
+* [X] Add Antenna to description package
+* [X] Create moveit-package with Antenna
