@@ -68,7 +68,8 @@ docker run -it --rm \
     -e DISPLAY=$DISPLAY \
     --ip 192.168.56.102 \
     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-    -v /home/mi3000-2/Scrivania/Antenne_Robot/Antenna-Characterization-Robot-Arm/robot_calibration:/robot_calibration \
+    -v /home/ciccio/project_antenna/UR5e-2f-85/Antenna-Characterization-Robot-Arm/robot_calibration:/robot_calibration \
+    -v /home/ciccio/project_antenna/Antenna-Characterization-Robot-Arm/src:/home/ros2_ws/src \
     ur_ros2:latest
 ```
 
@@ -108,3 +109,4 @@ docker image prune -f
 * [] Communication script with VM
 * [] Compute Inverse Kinematics
 * [] Control script package
+* [] Create moveit-package with Antenna
